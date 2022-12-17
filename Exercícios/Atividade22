@@ -1,0 +1,45 @@
+EXPORT ExCap4()
+BEGIN
+ 
+ PRINT();
+ LOCAL a,b,x;
+ M1:=[[0]];
+ F1:="0";
+ 
+ INPUT({ {F1,[8]}, {a,[0]}, {b,[0]} },
+       "Limites",
+       {"Função:", "a:", "b:"});
+
+ M1(1,1):=1;
+ M1(1,2):=a;
+ M1(1,3):=b;
+ M1(1,4):=F1(a);
+ M1(1,5):=F1(b);
+ M1(1,6):=x;
+ M1(1,7):=F1(x);
+ 
+ IF (a==b) THEN
+  PRINT("Digite valores diferentes!");
+  BREAK;
+ END;
+ 
+ IF (F1(a)) < 0 THEN
+  PRINT("Valor de a: " + a + "\n   F(a): " + F1(a));
+  PRINT("\nValor de b: " + b + "\n    F(b): " + F1(b));
+  PRINT("\nValores na ordem certa, nada a fazer");
+ END;
+
+ IF (F1(a)) > 0  THEN
+  PRINT("Valor de a: " + a + "\n   F(a): " + F1(a));
+  PRINT("\nValor de b: " + b + "\n    F(b): " + F1(b));
+  PRINT("\nTrocando os valores...");
+  PRINT("Nova ordem:");
+  PRINT("\nValor de a: " + b + "\n   F(a): " + F1(b));
+  PRINT("\nValor de b: " + a + "\n    F(b): " + F1(a));
+ END;
+
+ 
+
+ 
+
+END;
