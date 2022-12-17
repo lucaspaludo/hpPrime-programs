@@ -1,0 +1,92 @@
+EXPORT regressao()
+BEGIN
+
+ //limpa o terminal
+ PRINT();
+
+ //criação e configuração das variáveis
+ LOCAL grau := 3;
+ LOCAL expoente := grau*2;
+ LOCAL polinomio:=0;
+
+ //criação da matriz M1
+ M1 := [[0, 1.5, 4.5, 8, 9],
+       [1, -2, 2.5, 1.4, -2.1]]; //valores de x
+
+ //configurações da matriz inicial
+ LOCAL tamM1 := SIZE(M1);
+ LOCAL linhasM1 := tamM1(1);
+ LOCAL colunasM1 := tamM1(2);
+ LOCAL x := CAS("x");
+
+ //calcula matriz para os valores de x
+ FOR I FROM 1 TO colunasM1 DO
+  FOR J FROM 1 TO expoente DO
+  M2(I,J) := M1(1,I)^J;
+  END;
+ END;
+
+ //armazena os valores de x em uma lista L1
+ L1:=CAS(ΣLIST(M2)); 
+
+ //calcula matriz para os valores de xy
+ FOR I FROM 1 TO colunasM1 DO 
+  FOR J FROM 0 TO grau DO
+   IF J==0 THEN //ou J==0
+    M4(I,J+1) := M1(2,I);
+   ELSE
+    M4(I,J+1) := M1(1,I)^J * M1(2,I);
+   END;
+  END;
+ END;
+ 
+ //armazena os valores de xy em uma lista L2
+ L2:=CAS(ΣLIST(M4));
+ M3 := [[0]];
+ 
+ //calcula matriz final com os valores armazenados nas listas
+ FOR I FROM 1 TO grau+1 DO
+  FOR J FROM 1 TO grau+1 DO
+   IF (I==1 AND J == 1) THEN
+   M3(I,J) := colunasM1;
+   ELSE
+    IF I == 1 THEN
+     M3(I,J):=L1(J-1);
+    END;
+    IF I == 2 THEN
+     M3(I,J):=L1(J);
+    END;
+    IF I == 3 THEN
+     M3(I,J):=L1(J+1);
+    END;
+    IF I == 4 THEN
+     M3(I,J):=L1(J+2);
+    END;
+   END;
+  END;
+ END;
+  
+ //obtém matriz transposta das valores armazenados na lista L2
+ M5 := transpose(L2);
+
+ //obtém matriz final
+ FOR I FROM 1 TO grau+1 DO
+  M3(I,grau+2) := M5(I,1);
+ END;
+
+ //resolve a matriz final
+ M6 := RREF(M3);
+ 
+ //obtém polinomio interpolador
+ FOR I FROM grau+1 DOWNTO 1 DO
+  polinomio := polinomio + (M6(I,grau+2) * x^(I-1));
+ END;
+
+ //imprime polinomio interpolador
+ PRINT("-----##-----##-----##-----");
+ PRINT("\nPolinomio Interpolador:");
+ PRINT("\n" + normal(polinomio));
+ PRINT("\n-----##-----##-----##-----");
+
+END;
+ 
