@@ -1,0 +1,15 @@
+EXPORT Atividade5()
+BEGIN
+  LOCAL inicio,fim, acum:=0,i,res;
+
+  INPUT({{inicio,[0],{30,20,0}},{fim,[0],{30,20,1}}},
+       "Calculadora trigonométrica",
+       {"Início","Fim"});
+
+  FOR i  FROM inicio TO fim DO
+     acum:=acum+cos(10*i) + sin(3*i);
+  END;
+  
+  PRINT(acum);
+
+END;
