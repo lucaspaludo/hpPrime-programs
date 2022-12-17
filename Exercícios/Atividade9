@@ -1,13 +1,13 @@
-EXPORT curvaturagaussiana()
+EXPORT quadraturaGaussiana()
 BEGIN
 
- //lista de valores da Quadratura Gaussiana
+ //limpa o terminal
  PRINT();
  
  //criação das variáveis
- LOCAL a,b,n,i,funcao,acum:=0,t;
- LOCAL x := CAS("x");
+ LOCAL a, b, n, funcao, acum:=0, t;
 
+ //criação da tabela de Quadratura Gaussiana
    L1:={
   {  {0, 2}
   }, 
@@ -40,42 +40,25 @@ BEGIN
         {"a: ", "b: ", "n: ", "f(x): "},
         {"Digite o limite inferior", "Digite o limite superior", "Digite a altura entre os pontos", "Digite a função"});
   
-  
-  
-  
-  //PRINT(F2);
-  //PRINT(F3);
 
-  PRINT(L1(n,1));  
-  PRINT(L1(n,2));
-  PRINT(L1(n,3));
-
+  //executa Quadratura Gaussiana
   FOR I FROM 1 TO n DO
-   L2 := MAKELIST(L1(n,I), I,1,n,1);
-   L3 := MAKELIST(L2(I,1),I,1,n,1); //lista com valores de t
-   L4 := MAKELIST(L2(I,2),I,1,n,1); //lista com os valores de a
+   
+   L2 := MAKELIST(L1(n,I), I, 1, n, 1);
+   L3 := MAKELIST(L2(I,1), I, 1, n, 1); //lista com valores de t
+   L4 := MAKELIST(L2(I,2), I, 1, n, 1); //lista com os valores de a
    T := L3(I);
    F2 :=  ((b-a)/2) * T + ((b+a)/2);
    t := F2;
    funcao := ((b-a)/2) * F1(t);
    acum:=acum + L4(I) * funcao;
-   
-  
-  END;
-  PRINT(acum);
     
+  END;
 
-
- //imprime valores de N 
-// FOR I FROM 1 TO 5 DO
-  //PRINT("\n");
-  //PRINT("N = " + I);
-  //FOR J FROM 1 TO I DO
-  //PRINT("  Ai = " + L1(I,J,2));
-  //PRINT("  Ti = " + L1(I,J,1));
-  
- // END;
-// END;
+  //imprime o resultado da integral numérica
+  PRINT("\n" + "-----##-----##-----");
+  PRINT("\n" + "Resultado = " + acum);
+  PRINT("\n" + "-----##-----##-----");
 
 
 END;
