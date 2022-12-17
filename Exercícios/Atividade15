@@ -1,0 +1,37 @@
+EXPORT Ex1Cap6 ()
+BEGIN
+
+  //criação das variáveis
+  PRINT();
+  LOCAL valor,erro;
+  F1:="0";
+  
+  //entrada de valores
+  INPUT({{valor,[0]}, {erro,[0]}, {F1,[8]}},
+        "Método de cordas",
+        {"Valor", "Erro", "Função"});
+
+  //verifica se o valor é negativo
+  //IF  valor<0  THEN
+  // valor:=-valor;
+  //END;
+
+  IF  valor<0  THEN
+
+    REPEAT
+    valor := valor + 0.1;
+    PRINT("valor = " + valor);
+    UNTIL F1(valor) > erro;
+
+  END; 
+  
+  //encontra a raíz
+  REPEAT
+    valor := valor - 0.1;
+    PRINT("valor = " + valor);
+  UNTIL F1(valor) < erro;
+
+  PRINT("Raiz = " + valor);
+  PRINT("F(x) = " + F1(valor));
+
+END;
