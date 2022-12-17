@@ -1,0 +1,55 @@
+EXPORT difedividida()
+BEGIN
+  
+  //limpa o terminal
+  PRINT();
+
+  //criação e configuração das variáveis
+  LOCAL matriz;
+  LOCAL tamanho, i, j, acum:=0, prod:=1, y, delta, polinomio;
+  LOCAL x := CAS("x");
+  
+  //criação da matriz
+  M1 := [[-2, -0.5, 1, 2,4],
+         [21, 3, 3, 33,543]]; 
+
+  //criação da tabela de diferenças divididas
+  matriz := transpose(M1);
+  tamanho := SIZE(matriz);
+  M2 := transpose(row(M1, 2));
+  FOR i FROM 2 TO tamanho(1) DO
+    FOR j FROM 1 TO tamanho(1)-i+1 DO
+      M2(j, i):=(M2(j+1, i-1)-M2(j, i-1))/(matriz( j+i-1, 1)-matriz( j, 1));
+    END;
+  END;
+  
+  //imprime tabela de diferenças divididas
+  MSGBOX("Resultado em M2:");
+  EDITMAT(M2);  
+  
+  //configuração da matriz final
+  LOCAL tamM2 := SIZE(M2);
+  LOCAL colunasM2 := tamM2(2);
+
+  //executa método de Newton
+  FOR I FROM 1 TO colunasM2-1 DO
+   delta := M2(1,I+1);
+    FOR J FROM 1 TO I DO
+     prod := prod * (x - (M1(1,J)));
+    END;
+   y := prod * delta;
+   acum := acum + y;
+   prod:=1;
+  END;
+  
+  //obtenção do polinomio interpolador
+  polinomio := M2(1,1) + acum;
+ 
+  //impressão do polinomio interpolador
+  PRINT("-----##-----##-----##-----");
+  PRINT("\nPolinomio Interpolador:");
+  PRINT("\n" + normal(polinomio));
+  PRINT("\n-----##-----##-----##-----");
+
+                                       
+END;
