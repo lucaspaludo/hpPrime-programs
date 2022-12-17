@@ -1,0 +1,28 @@
+EXPORT Ex1Cap8()
+BEGIN
+ 
+ PRINT(); //limpa o terminal
+ LOCAL n; //criação da variável n
+
+ //entrada de dados
+ INPUT({{n,[0], {50,20,0}}},
+      "Método de Gauss-Jordan",
+      "Insira o valor de n: ",
+      "Digite um número maior que 1");
+
+ IF (n<=1) THEN //verifica se n é um valor válido
+  PRINT("Valor inválido.");
+
+ ELSE 
+
+   PRINT("n = " + n); //imprime o valor de n
+   FOR I FROM 1 TO n DO
+    FOR J FROM 1 TO n DO
+     IF I<>J THEN //verifica se i é diferente de j
+      PRINT("i: " + I + ", " + " j: " + J); //imprime os valores de i e j
+     END;
+    END;
+   END;
+ END;
+
+END;
