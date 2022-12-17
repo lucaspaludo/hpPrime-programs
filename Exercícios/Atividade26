@@ -1,0 +1,63 @@
+EXPORT gregoryNewton()
+BEGIN
+
+ //limpa o terminal
+ PRINT();
+ 
+ //criação e configuração das variáveis
+ LOCAL matriz;
+ LOCAL tamanho, i, j, acum := 0, prod := 1, prod1:=1, prod2;
+ LOCAL polinomio, y, delta, h, z;
+ LOCAL x := CAS("x");
+
+ //criação e configuração da matriz inicial
+ M1 := [[2,4,6],
+        [-8,-22,-44]]; 
+ matriz := transpose(M1);
+ tamanho := SIZE(matriz);
+ M2 := transpose(row(M1, 2));
+
+ //obtém tabela de diferenças finitas
+ FOR i FROM 2 TO tamanho(1) DO
+  FOR j FROM 1 TO tamanho(1)-i+1 DO
+   M2(j, i):=(M2(j+1, i-1)-M2(j, i-1));
+  END;
+ END;
+ 
+ //imprime a tabela de diferenças finitas
+ MSGBOX("Resultado em M2:");
+ EDITMAT(M2);
+ 
+ //configurações da matriz M2
+ LOCAL tamM2 := SIZE(M2);
+ LOCAL colunasM2 := tamM2(2);
+
+ //calcula constantes h e z
+ h := (M1(1,2) - M1(1,1));
+ z := ((x - M1(1,1)) / h);
+ 
+ //executa método de Gregory-Newton
+ FOR I FROM 1 TO colunasM2-1 DO
+  delta := M2(1,I+1);
+   FOR J FROM 0 TO I-1 DO
+    prod := ((x - M1(1,1))  / h);
+    prod1  := prod1 * (prod - J);
+    prod2 := (prod1 / ((J+1)!) );
+   END;
+  y := delta * prod2;
+  acum := acum + y;
+  prod1:=1;
+  prod2 := 1;
+ 
+ END;
+
+ //obtém polinomio interpolador
+ polinomio := M2(1,1) + acum;
+
+ //imprime polinomio interpolador
+ PRINT("-----##-----##-----##-----");
+ PRINT("\nPolinomio Interpolador:");
+ PRINT("\n" + normal(polinomio));
+ PRINT("\n-----##-----##-----##-----");
+
+END;
