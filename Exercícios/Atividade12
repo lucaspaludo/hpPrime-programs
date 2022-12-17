@@ -1,0 +1,38 @@
+EXPORT Ex1Cap11()
+BEGIN
+
+ PRINT();
+
+ //criação das variáveis
+ LOCAL a,b,n,h,i;
+
+ //entrada de dados
+ INPUT({{a,[0],{30,20,0}},
+        {b,[0],{30,20,1}},
+        {n,[0],{30,20,2}},
+        {F1,[8], {30,60,3}}},
+        "Valores",
+        {"a: ", "b: ", "n: ", "f(x): "},
+        {"Digite o limite inferior", "Digite o limite superior", "Digite a altura entre os pontos", "Digite a função"});
+
+  //calcula altura entre os pontos
+  h := (b-a)/n;
+
+  //cria vetor com a altura entre os pontos
+  
+   L1:=MAKELIST(X,X,a,b,h);
+  
+
+  //aplica os valores obtidos do vetor na função
+  L2 := MAKELIST(F1(X), X, a, b, h);
+
+  //imprime vetor com os valores de X
+  PRINT("X = ");
+  PRINT(L1);
+ 
+  //imprime veotr com os valores de Y
+  PRINT("\n" + "Y = ");
+  PRINT(L2);
+
+ 
+END;
