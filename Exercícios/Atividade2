@@ -1,0 +1,21 @@
+EXPORT Atividade2()
+BEGIN
+  
+ PRINT();
+ LOCAL acum1 := 1;
+ LOCAL acum2 := 0;
+ LOCAL i,j;
+
+  FOR i FROM 2 TO 5 DO
+    acum1 := acum1 * i;
+ END;
+ 
+ FOR j FROM 1 TO 6 DO
+  acum2 := acum2 + j;
+ END;
+
+ LOCAL res:= acum1*acum2;
+ PRINT(res);
+
+  
+END;
