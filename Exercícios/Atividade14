@@ -1,0 +1,21 @@
+EXPORT Ex1Cap5 ()
+BEGIN
+ 
+ PRINT();
+ LOCAL a,b;
+ F7 := "0";
+
+ INPUT({ {F7,[8]}, {a,[0]}, {b,[0]} },
+      "Limites - Método de Newton",
+      {"Função", "a:", "b:"});
+ 
+ F8 := diff(F7);
+ F9 := diff(F8); 
+
+ IF (F7(a)) * (F9(a)) > 0 THEN
+  PRINT ("Limite utilizado: " + a);
+  ELSE
+  PRINT ("Limite utilizado: " + b);
+ END;
+  
+END;
