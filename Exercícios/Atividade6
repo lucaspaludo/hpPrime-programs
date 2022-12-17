@@ -1,0 +1,74 @@
+EXPORT Atividade7()
+BEGIN
+
+ PRINT();
+
+ LOCAL conjunto1, limInfA, limSupA, operacao,conjunto2, limInfB, limSupB;
+
+   //input
+   INPUT({{conjunto1,{"Somatório","Produtório"},{35,50,0}},
+         {limInfA,[0],{25,20,1}},
+         {limSupA,[0],{75,20,1}},
+         {operacao,{"Divisão (/)","Multiplicação (*)","Subtração (-)","Soma (+)"},{35,50,3}},
+         {conjunto2,{"Somatório", "Produtório"},{35,50,5}},
+         {limInfB,[0],{25,20,6}},
+         {limSupB,[0],{75,20,6}}},
+         "Calculadora Complexa",
+         {"Conjunto 1:","Lim Inf A:","Lim Sup A:","Operação:","Conjunto 2:","Lim Inf B","Lim Sup B"},
+         {"","","","","","",""},
+         {"","","","","","",""},
+         {"Somatório","1","5","Divisão (/)","Somatório","6","10"});
+
+   //primeiro conjunto
+   LOCAL acum1,i;
+   IF conjunto1==1 THEN
+     acum1:=0;
+   ELSE
+     acum1:=1;
+   END;
+
+   FOR i FROM  limInfA  TO limSupA  DO
+     IF conjunto1==1 THEN
+        acum1:=acum1+i;
+     ELSE
+      acum1:=acum1*i;
+     END;
+   END;
+
+   //segundo conjunto
+   LOCAL acum2,j;
+   IF conjunto2==1 THEN
+     acum2:=0;
+   ELSE
+     acum2:=1;
+   END;
+
+   FOR i FROM  limInfB  TO limSupB  DO
+     IF conjunto2==1 THEN
+        acum2:=acum2+i;
+     ELSE
+      acum2:=acum2*i;
+    END;
+   END;
+
+   //operação
+   LOCAL res;
+   IF operacao==1 THEN
+    res:=acum1/acum2;
+   END;
+
+   IF operacao==2 THEN
+    res:=acum1*acum2;
+   END;
+
+   IF operacao==3 THEN
+    res:=acum1-acum2;
+   END;
+  
+   IF operacao==4 THEN
+    res:=acum1+acum2;
+   END;
+
+  PRINT(res);
+ 
+END;
