@@ -1,0 +1,69 @@
+EXPORT Ex1p1()
+BEGIN
+
+  M1:=[[0]];
+  PRINT();
+  LOCAL tam, vele, tec, tipo;
+
+
+  INPUT ({{tam,[0],{30,20,0}},
+         {vele,[0],{40,20,1}},
+         {tec,{"Laço repetição","Makemat"},{30,50,2}},
+         {tipo, {"Triangular Superior","Triangular inferior","Diagonal Principal"}, {30,50,3}}},
+         "Matriz",
+         {"Tamanho:","Valor element:","Técnica:","Tipo Matriz:"});
+
+ 
+ //matriz triangular superior -> for
+ IF tec==1 AND tipo==1 THEN
+   FOR I  FROM 1 TO tam  DO  
+     FOR J FROM 1 TO tam DO
+       IF I<=J THEN 
+        M1(I,J):=vele;
+       END;
+    END;
+   END;
+ END;
+
+ //matriz triangular superior -> MAKEMAT
+ IF tec==2 AND tipo==1 THEN
+  M1:=MAKEMAT(I<=J,tam,tam);
+ END;
+
+ //matriz triangular inferior -> for
+ IF tec==1 AND tipo==2 THEN
+   FOR I  FROM 1 TO tam  DO  
+     FOR J FROM 1 TO tam DO
+       IF I>=J THEN 
+        M1(I,J):=vele;
+       END;
+    END;
+   END;
+ END;
+
+ //matriz triangular inferior -> MAKEMAT
+ IF tec==2 AND tipo==2 THEN
+  M1:=MAKEMAT(I>=J,tam,tam);
+ END;
+
+  //matriz diagonal principal -> for
+ IF tec==1 AND tipo==3 THEN
+   FOR I  FROM 1 TO tam  DO  
+     FOR J FROM 1 TO tam DO
+       IF I==J THEN 
+        M1(I,J):=vele;
+       END;
+    END;
+   END;
+ END;
+
+ //matriz diagonal principal -> MAKEMAT
+ IF tec==2 AND tipo==3 THEN
+  M1:=MAKEMAT(I==J,tam,tam);
+ END;
+
+
+ PRINT(M1);
+
+
+END;
