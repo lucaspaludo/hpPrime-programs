@@ -1,0 +1,24 @@
+EXPORT Ex1Cap10()
+BEGIN
+ 
+ PRINT();
+ 
+ LOCAL n;
+ INPUT({ {n,[0],{50,20,0}} },
+       "Acumulador",
+       "Valor de n: ",
+       "Digite um valor para n");
+
+ FOR I FROM 1 TO n DO
+  PRINT("i: " + I);
+
+   J := I;
+   FOR J FROM 1 TO I DO
+    PRINT("   j: " + J);
+    
+  END;
+  PRINT("\n");
+ END;
+
+
+END;
