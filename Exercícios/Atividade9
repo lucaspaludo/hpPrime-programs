@@ -1,0 +1,81 @@
+EXPORT curvaturagaussiana()
+BEGIN
+
+ //lista de valores da Quadratura Gaussiana
+ PRINT();
+ 
+ //criação das variáveis
+ LOCAL a,b,n,i,funcao,acum:=0,t;
+ LOCAL x := CAS("x");
+
+   L1:={
+  {  {0, 2}
+  }, 
+  {  {1/sqrt(3), 1}, 
+    {-1/sqrt(3), 1}
+  }, 
+  {  {0, 8/9}, 
+    {sqrt(3/5), 5/9}, 
+    {-sqrt(3/5), 5/9}
+  },
+  {  {sqrt(3/7-2/7*sqrt(6/5)), (18+sqrt(30))/36}, 
+    {-sqrt(3/7-2/7*sqrt(6/5)), (18+sqrt(30))/36}, 
+    {sqrt(3/7+2/7*sqrt(6/5)), (18-sqrt(30))/36}, 
+    {-sqrt(3/7+2/7*sqrt(6/5)), (18-sqrt(30))/36}
+  },
+  {  {0, 128/225},
+    {1/3*sqrt(5-2*sqrt(10/7)), (322+13*sqrt(70))/900},
+    {-1/3*sqrt(5-2*sqrt(10/7)), (322+13*sqrt(70))/900},
+    {1/3*sqrt(5+2*sqrt(10/7)), (322-13*sqrt(70))/900},
+    {-1/3*sqrt(5+2*sqrt(10/7)), (322-13*sqrt(70))/900}
+  }
+  };
+
+ //entrada de dados
+ INPUT({{a,[0],{30,20,0}},
+        {b,[0],{30,20,1}},
+        {n,[0],{30,20,2}},
+        {F1,[8], {30,60,3}}},
+        "Valores",
+        {"a: ", "b: ", "n: ", "f(x): "},
+        {"Digite o limite inferior", "Digite o limite superior", "Digite a altura entre os pontos", "Digite a função"});
+  
+  
+  
+  
+  //PRINT(F2);
+  //PRINT(F3);
+
+  PRINT(L1(n,1));  
+  PRINT(L1(n,2));
+  PRINT(L1(n,3));
+
+  FOR I FROM 1 TO n DO
+   L2 := MAKELIST(L1(n,I), I,1,n,1);
+   L3 := MAKELIST(L2(I,1),I,1,n,1); //lista com valores de t
+   L4 := MAKELIST(L2(I,2),I,1,n,1); //lista com os valores de a
+   T := L3(I);
+   F2 :=  ((b-a)/2) * T + ((b+a)/2);
+   t := F2;
+   funcao := ((b-a)/2) * F1(t);
+   acum:=acum + L4(I) * funcao;
+   
+  
+  END;
+  PRINT(acum);
+    
+
+
+ //imprime valores de N 
+// FOR I FROM 1 TO 5 DO
+  //PRINT("\n");
+  //PRINT("N = " + I);
+  //FOR J FROM 1 TO I DO
+  //PRINT("  Ai = " + L1(I,J,2));
+  //PRINT("  Ti = " + L1(I,J,1));
+  
+ // END;
+// END;
+
+
+END;
