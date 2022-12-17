@@ -1,0 +1,19 @@
+EXPORT Ex2Cap3()
+BEGIN
+
+   PRINT();
+   LOCAL x,i,acum:=0;
+
+   INPUT({{x,[0],{50,20,0}}},
+        "Polinômio de Taylor para e^x",
+        "Valor do expoente",
+        "Digite o valor.");
+
+
+   FOR i FROM 0 TO 10 DO
+    acum := acum + ( (x^i) / factorial(i) ); //referência para este comando: https://en.hpprime.club/docs/reference/factorial
+   END;
+
+  PRINT("O valor do número de Euler elevado ao expoente " + x + " é: \n" + acum);
+
+END;
