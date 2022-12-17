@@ -1,0 +1,37 @@
+EXPORT Ex7cap2()
+BEGIN
+   
+   PRINT();
+   LOCAL n,i,vet:=[0];
+
+   INPUT ({{n,[0],{50,20,0}}},
+         "Integração de Simpson",
+         "Número de elementos",
+         "Digite um valor válido.");
+   
+   IF (n MOD 3 <> 1) THEN
+       MSGBOX("Número de elementos inválido. \n\nO resto da divisão por 3 deve ser igual a 1!");
+       BREAK; //referência para este comando -> https://en.hpprime.club/docs/reference/BREAK
+   END;
+   
+   FOR i FROM 1 TO n DO    
+     IF (i MOD 3 <> 1) THEN
+        vet(i):=3;
+     END;
+
+     IF (i MOD 3 == 1) THEN
+       vet(i):=2;
+     END;    
+
+     IF (i==1 OR i==n) THEN
+       vet(i):=1;
+     END;
+    
+   END; 
+
+       
+
+
+   PRINT(vet);
+
+END;
