@@ -1,0 +1,30 @@
+EXPORT Ex2Cap10()
+BEGIN
+
+ PRINT(); //limpa o terminal
+ 
+ LOCAL n; //criação da variável
+
+ //entrada de dados
+ INPUT({ {n,[0],{50,20,0}} },
+       "Gregory - Newton",
+       "Valor de n: ",
+       "Digite um valor para n");
+
+ 
+ FOR I FROM 1 TO n DO //percorre de 1 até n
+  PRINT("Delta" + "(" + I + ")" + " *" ); //imprime valores de 1 até n
+   J := I; 
+   FOR J FROM 0 TO I-1 DO //percorre de 1 até o valor atual de I
+    PRINT("(z - " + J + ")"); //imprime valores de 1 até o valor atual de I
+  END;
+  PRINT("\n");
+ END;
+
+
+
+
+
+
+
+END;
