@@ -1,0 +1,19 @@
+EXPORT Atividade3 ()
+BEGIN
+
+ PRINT();
+
+ LOCAL x:=[7,3,2,5,4,1,6,9,10,6];
+ LOCAL i;
+ LOCAL n:=size(x);
+ LOCAL acum:=0;
+
+ FOR i FROM 1 TO n(1) DO 
+   acum := acum + x(i);
+ END;
+
+ LOCAL res:= acum/n(1);
+ PRINT(res);
+ 
+
+END;
