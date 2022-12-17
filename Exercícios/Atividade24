@@ -1,0 +1,34 @@
+EXPORT Ex5Cap2()
+
+BEGIN
+ PRINT();
+ LOCAL n,i,vet:=[0];
+ 
+ INPUT({{n,[0], {50,20,0}}},
+      "Integração de Simpson",
+      "Número de elementos",
+      "Digite um número ímpar.");
+
+ IF (n MOD 2 == 0)  THEN
+   MSGBOX("O número de elementos deve ser ímpar!");
+   BREAK; //referência para este comando -> https://en.hpprime.club/docs/reference/BREAK
+ END;
+  
+ FOR i FROM 1 TO n DO
+  IF (i==1 OR i==n) THEN
+    vet(i):=1;
+  END;
+
+  IF (i MOD 2 == 0)   THEN
+   vet(i):=4;
+  END;
+
+  IF (i MOD 2 == 1) AND (i<>1) AND (i<>n) THEN
+   vet(i):=2;
+  END;
+
+  END;
+
+  PRINT(vet);
+
+END;
