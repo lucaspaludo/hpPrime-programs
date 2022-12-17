@@ -1,0 +1,46 @@
+EXPORT lagrange()
+BEGIN
+
+  //criação da matriz
+  M1:= [[0, -1],
+       [1.5, -4.75],
+       [3, -13]];
+  
+  //limpa o terminal
+  PRINT();
+
+  //criação e configuração das variáveis
+  LOCAL i, j;
+  LOCAL x := CAS("x");
+  LOCAL sol, sol1 := 0; 
+
+  //executa método de Lagrange
+  FOR i FROM 1 TO 3 DO
+   LOCAL eq01 := M1(i, 2);
+   LOCAL eq02 := 1;
+   FOR j FROM 1 TO 3 DO
+    IF i <> j THEN
+     eq01 := eq01 * (x - M1(j, 1));   
+     eq02 := eq02 * (M1(i, 1) - M1(j, 1));  
+    END;
+   END;
+
+   PRINT("\nEquação 1: " + eq01); //imprime o numerador
+   PRINT("Equação 1 simplificada: " + normal(eq01)); //imprime o numerador simplificado
+   PRINT("Equação 2: " + eq02); //imprime o denominador
+
+   sol := ((eq01)/(eq02)); //solução individual
+   sol1:= sol1 + sol; //soma das soluções individuais
+
+   PRINT("\nPolinomio parcial: " + normal(sol)); //imprime soluções individuais
+   PRINT("\n");
+   PRINT("-----##-----##-----##-----");
+
+  END;
+
+  PRINT("\n");
+  PRINT("Polinomio interpolador: " + normal(sol1)); //imprime o polinomio interpolador
+  PRINT("\n");
+  PRINT("-----##-----##-----##-----");
+       
+END;
