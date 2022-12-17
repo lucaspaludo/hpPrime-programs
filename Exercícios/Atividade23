@@ -1,0 +1,19 @@
+EXPORT Ex3Cap2()
+BEGIN
+   PRINT();
+   LOCAL limiteA, limiteB, i, acum:=0, tam;
+
+   INPUT ({{limiteA, [0], {30,20,0}},
+          {limiteB, [0], {30,20,1}}},
+           "Opções de entrada",
+           {"Limite A", "Limite B"},
+           {"Limite A", "Limite B"});
+
+   FOR i FROM limiteA TO limiteB DO
+       acum:= acum + i;
+   END;
+
+   PRINT(acum);
+
+  
+END;
