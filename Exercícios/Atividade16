@@ -1,0 +1,19 @@
+EXPORT Ex2Cap7()
+BEGIN
+
+  PRINT();
+  LOCAL linhas:=4;
+  M1:=[[1,-2,-1,2,1],[-2,5,3,-3,4],[-2,6,5,-2,13],[2,-4,-1,5,7]];
+  
+  //eliminação de Gauss 
+   FOR I FROM 2 TO linhas DO
+    FOR J FROM 2 TO linhas DO
+     M1(I,J):= M1(I,J) - ( (M1(I,J)) / (M1(J,J)) );
+     
+
+    END;
+   END;
+  
+   PRINT(M1);
+ 
+END;
